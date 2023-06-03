@@ -17,7 +17,7 @@ const quote = {
 }
 
 export default function Header() {
-    const footPrintImg = `/logo.png`;
+    const footPrintImg = `/logo-dark.png`;
     return (
         <motion.header
             variants={quote}

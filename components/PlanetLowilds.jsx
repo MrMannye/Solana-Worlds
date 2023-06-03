@@ -2,9 +2,10 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 // import { Spinner } from '@chakra-ui/react'
+import Animate from '@/animations/Animate'
 
 
-const PlanetLowilds = ({ planetLevel, size }) => {
+const PlanetLowilds = ({ planetLevel, size, isActive }) => {
     const refContainer = useRef()
     const loader = new GLTFLoader()
     const clock = new THREE.Clock();
@@ -113,9 +114,16 @@ const PlanetLowilds = ({ planetLevel, size }) => {
 
     return (
         <div 
-            className='w-full h-96 lg:flex justify-center'
+            className='w-full h-[410px] relative flex flex-col items-center justify-center'
             ref={refContainer}
         >
+            {isActive && 
+                <Animate planetLevel={planetLevel}>
+                    <button className='bg-black absolute -bottom-2 opacity-80 p-2 w-1/3 tracking-widest shadow-2xl rounded-lg text-white'>
+                        JUGAR
+                    </button>
+                </Animate>
+            }
         </div>
     )
 }

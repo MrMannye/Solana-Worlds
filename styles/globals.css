@@ -16,15 +16,6 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
 
 .login{
   background-image: url('https://cdn.discordapp.com/attachments/849148347939160074/1114426667960631296/Azul_Tecnologia_y_Videojuegos_Logotipo.png');
@@ -36,7 +27,7 @@ body {
 }
 
 .swiper-slide {
-  @apply text-sm text-black p-2 flex items-center justify-center text-center
+  @apply text-sm text-black p-2 flex items-center justify-center text-center bg-transparent
 }
 
 /* Inicio de estilos de login */
@@ -114,10 +105,17 @@ section .signin .content
 }
 section .signin .content h2 
 {
+	display: flex;
+	align-items: center;
 	font-size: 1.5em;
 	color: #fff;
-	text-transform: uppercase;
 }
+
+section .signin .content h2 > *
+{	
+	margin-right: 10px;
+}
+
 section .signin .content .form 
 {
 	width: 100%;
