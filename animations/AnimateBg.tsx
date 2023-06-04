@@ -18,7 +18,7 @@ export default function AnimateBg({planetLevel}:any) {
             opacity: 0, 
         },
         animate: {
-            opacity: 1,
+            opacity: 0.8,
             transition: {
                 delay: 0.2,
                 duration: 0.8,
@@ -31,7 +31,7 @@ export default function AnimateBg({planetLevel}:any) {
     
     return (
         <motion.div
-            className={`absolute w-screen h-screen top-0 left-0 -z-50 overflow-hidden`}
+            className={`absolute filter blur-xl w-screen h-screen top-0 left-0 -z-50 overflow-hidden`}
             variants={quote}
             initial="initial"
             animate="animate"
