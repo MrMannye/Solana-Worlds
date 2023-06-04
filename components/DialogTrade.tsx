@@ -13,8 +13,9 @@ import {
     getMarketPubkeys,
     calculateNetOdd,
 } from "@hxronetwork/parimutuelsdk";
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
-export default function DialogTrade({ open, setOpen, level }: any) {
+export default function DialogTrade({ open, setOpen, level, userLevel, setUserLevel }: any) {
 
     const { config } = PariConfig;
     const { publicKey } = useWallet();
@@ -106,6 +107,12 @@ export default function DialogTrade({ open, setOpen, level }: any) {
     return (
         <Dialog open={open} onClose={closeDialog}>
             <DialogContent className='p-5 relative z-40'>
+                {level >= userLevel &&
+                    <div className='absolute flex items-center space-y-2 justify-center flex-col top-0 left-0 w-full h-full bg-black z-50 opacity-90'>
+                        <QuestionMarkIcon className='text-white text-lg' />
+                        <span className='text-white text-xs'>Debes ganar el nivel anterior</span>
+                    </div>
+                }
                 <Image src={"/solana.png"} width={50} height={50} alt='Logo Image' className='hover:rotate-45 rounded-full absolute top-2 right-4 duration-200' />
                 <div className='flex flex-col items-center justify-center'>
                     <h1 className='font-bold text-2xl tracking-wide'>{currentLevel?.level}</h1>
@@ -130,7 +137,7 @@ export default function DialogTrade({ open, setOpen, level }: any) {
                     </span>
                     <span className='flex items-center justify-between'>
                         <h3>Starts In</h3>
-                        <span>{countDownTime === "" ? "00:00:00" : countDownTime }</span>
+                        <span>{countDownTime === "" ? "00:00:00" : countDownTime}</span>
                     </span>
                 </div>
                 <TextField

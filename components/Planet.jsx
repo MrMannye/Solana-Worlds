@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import Animate from '@/animations/Animate'
 import DialogTrade from './DialogTrade'
 
-const Planet = ({ planetLevel, size,isActive, level }) => {
+const Planet = ({ planetLevel, size,isActive, level, userLevel, setUserLevel }) => {
     const refContainer = useRef()
     const [open, setOpen] = useState(false);
     const loader = new GLTFLoader()
@@ -124,7 +124,7 @@ const Planet = ({ planetLevel, size,isActive, level }) => {
                     </button>
                 </Animate>
             }
-            <DialogTrade open={open} setOpen={setOpen} level={level}/>
+            <DialogTrade open={open} setOpen={setOpen} level={level} userLevel={userLevel} setUserLevel={setUserLevel}/>
         </div>
     )
 }

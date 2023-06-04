@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import Animate from '@/animations/Animate'
 import DialogTrade from './DialogTrade'
 
-const PlanetLowilds = ({ planetLevel, size, isActive,level }) => {
+const PlanetLowilds = ({ planetLevel, size, isActive,level,userLevel, setUserLevel }) => {
     const refContainer = useRef()
     const loader = new GLTFLoader()
     const clock = new THREE.Clock();
@@ -125,7 +125,7 @@ const PlanetLowilds = ({ planetLevel, size, isActive,level }) => {
                     </button>
                 </Animate>
             }
-            <DialogTrade open={open} setOpen={setOpen} level={level}/>
+            <DialogTrade open={open} setOpen={setOpen} level={level} userLevel={userLevel} setUserLevel={setUserLevel}/>
         </div>
     )
 }
