@@ -3,13 +3,17 @@ import type { AppProps } from 'next/app'
 import React, { useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import {
-  WalletModalProvider
-} from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
+import dynamic from "next/dynamic";
 
 // Default styles that can be overridden by your app
 require('@solana/wallet-adapter-react-ui/styles.css');
+
+const ReactUIWalletModalProviderDynamic = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletModalProvider,
+  { ssr: false }
+);
 
 export default function App({ Component, pageProps }: AppProps) {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
@@ -29,10 +33,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <div>
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect>
-          <WalletModalProvider>
+          <ReactUIWalletModalProviderDynamic>
             { /* Your app's components go here, nested within the context providers. */}
             <Component {...pageProps} />
-          </WalletModalProvider>
+          </ReactUIWalletModalProviderDynamic>
         </WalletProvider>
       </ConnectionProvider>
     </div>

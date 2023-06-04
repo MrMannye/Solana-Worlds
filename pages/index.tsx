@@ -1,5 +1,4 @@
 import Navbar from '@/components/Navbar';
-import PariBox from '@/components/PariBox';
 import Planet from '@/components/Planet';
 import PlanetLowilds from '@/components/PlanetLowilds';
 import AnimateBg from '@/animations/AnimateBg';
@@ -7,9 +6,10 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
 import { EffectCoverflow } from 'swiper';
-import { Swiper, SwiperClass, SwiperProps, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperClass, SwiperSlide, useSwiper } from 'swiper/react';
 
 import 'swiper/swiper.min.css';
+import Animate from '@/animations/Animate';
 
 export default function Home() {
   const [userLevel, setUserLevel] = useState<Number>(1);
@@ -28,7 +28,10 @@ export default function Home() {
 
   return (
     <main className='flex relative justify-center items-center flex-col min-h-screen'>
-      <Navbar />
+      {/* <Transition/> */}
+      <Animate>
+        <Navbar />
+      </Animate>
       <AnimateBg planetLevel={userLevel} />
       <Swiper
         onSlideChange={(e) => handleChangueSlide(e)}
@@ -50,35 +53,35 @@ export default function Home() {
         <SwiperSlide>
           {({ isActive }) => {
             return (
-              <Planet planetLevel={"/models/green_planet.glb"} size={0.034} isActive={isActive} />
+              <Planet planetLevel={"/models/green_planet.glb"} level={userLevel} size={0.034} isActive={isActive} />
             )
           }}
         </SwiperSlide>
         <SwiperSlide>
           {({ isActive }) => {
             return (
-              <Planet planetLevel={"/models/purple_planet.glb"} size={5} isActive={isActive} />
+              <Planet planetLevel={"/models/purple_planet.glb"} level={userLevel} size={5} isActive={isActive} />
             )
           }}
         </SwiperSlide>
         <SwiperSlide>
           {({ isActive }) => {
             return (
-              <Planet planetLevel={"/models/stylized_planet.glb"} size={6} isActive={isActive} />
+              <Planet planetLevel={"/models/stylized_planet.glb"} level={userLevel} size={6} isActive={isActive} />
             )
           }}
         </SwiperSlide>
         <SwiperSlide>
           {({ isActive }) => {
             return (
-              <PlanetLowilds planetLevel={"/models/lowilds_planet.glb"} size={1} isActive={isActive} />
+              <PlanetLowilds planetLevel={"/models/lowilds_planet.glb"} level={userLevel} size={1} isActive={isActive} />
             )
           }}
         </SwiperSlide>
         <SwiperSlide>
           {({ isActive }) => {
             return (
-              <Planet planetLevel={"/models/planet_earth.glb"} size={1} isActive={isActive} />
+              <Planet planetLevel={"/models/planet_earth.glb"} level={userLevel} size={1} isActive={isActive} />
             )
           }}
         </SwiperSlide>

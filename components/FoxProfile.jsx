@@ -92,7 +92,7 @@ const Planet = ({ model, size }) => {
                 const delta = clock.getDelta();
                 mixer.update(delta);
                 renderer.render(scene, camera)
-                // camera.lookAt(target)
+                camera.lookAt(target)
             }
 
             return () => {
