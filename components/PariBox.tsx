@@ -1,8 +1,9 @@
+import { TextField } from '@mui/material'
 import React from 'react'
 
 function PariBox() {
     return (
-        <div className='bg-white text-black opacity-90 flex flex-col items-center rounded-lg p-5 shadow-lg'>
+        <div className='bg-white text-black opacity-90 flex flex-col items-center rounded-lg shadow-lg'>
             <section className='flex flex-col items-center justify-center'>
                 <h1 className='font-bold text-2xl tracking-wide'>Level 1</h1>
                 <h2 className='font-semibold -mt-1 text-xs'>1 minute</h2>
@@ -29,7 +30,12 @@ function PariBox() {
                     <span>87.50</span>
                 </span>
             </div>
-            <input type="text" className='p-2 border border-1 m-4 text-sm rounded-lg' placeholder='Enter Amount' />
+            <TextField
+                id="outlined-password-input"
+                label="amount"
+                type="text"
+                autoComplete="amount"
+            />
             <div className='flex items-center space-x-4 justify-center w-full'>
                 <button className='hover:bg-green-400 w-full hover:text-white duration-300 px-4 py-2 rounded-lg shadow-md border-green-500 border text-green-500'>Long</button>
                 <button className='hover:bg-red-500 hover:text-white duration-300 border-red-500 border text-red-500 px-4 py-2 w-full rounded-lg shadow-md'>Short</button>

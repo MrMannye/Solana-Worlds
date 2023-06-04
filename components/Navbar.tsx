@@ -3,6 +3,7 @@ import { useWallet } from '@solana/wallet-adapter-react'
 import { useRouter } from 'next/router';
 import FoxProfile from './FoxProfile';
 import Image from 'next/image'
+import Link from 'next/link';
 
 export default function Navbar() {
 
@@ -23,10 +24,10 @@ export default function Navbar() {
                 <Image src={footPrintImg} width={20} height={20} alt='Logo Image' className=' hover:rotate-45 duration-200' />
                 <h1 className='font-bold tracking-wide text-lg ml-4'>Solana Worlds</h1>
             </div>
-            <div className='bg-gradient-to-br from-slate-200 to-black shadow-lg opacity-70 rounded-full p-2 flex items-center text-black text-xs'>
+            <Link href={"/profile"} className='bg-gradient-to-br from-slate-200 to-black shadow-lg opacity-70 rounded-full p-2 flex items-center text-black text-xs'>
                 <span className='px-2'>{content}</span>
                 <img src={wallet?.adapter.icon} alt='Image Icon Wallet' className='w-9 h-9 p-2 rounded-full' />
-            </div>
+            </Link>
         </header>
     )
 }

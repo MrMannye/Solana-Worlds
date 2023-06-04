@@ -1,18 +1,8 @@
 import React, { useEffect } from 'react'
 import { Variants, motion } from 'framer-motion'
 
-export default function Animate({ planetLevel, children }: any) {
-    const colors = [
-        "linear-gradient(to right, rgba(21, 128, 61, 0.5), rgba(0, 0, 0, 1))",
-        "linear-gradient(to right, rgba(126, 34, 206, 0.5),  rgba(0, 0, 0, 1))",
-        "linear-gradient(to right, rgba(29, 78, 216, 0.5),  rgba(0, 0, 0, 1))",
-        "linear-gradient(to right, rgba(217, 119, 6, 0.5),  rgba(0, 0, 0, 1))",
-        "linear-gradient(to right, rgba(6, 182, 212, 0.5),  rgba(0, 0, 0, 1))",
-        "linear-gradient(to right, rgba(0, 0, 0, 0.5),  rgba(0, 0, 0, 1))"
-    ]
-    useEffect(() => {
-
-    }, [])
+export default function Animate({ children }: any) {
+    
     const quote: Variants = {
         initial: {
             opacity: 0,
@@ -23,7 +13,6 @@ export default function Animate({ planetLevel, children }: any) {
                 delay: 0.2,
                 ease: "easeInOut"
             },
-            backgroundImage: colors[planetLevel]
         }
     }
 

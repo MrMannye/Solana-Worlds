@@ -3,9 +3,11 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 // import { Spinner } from '@chakra-ui/react'
 import Animate from '@/animations/Animate'
+import DialogTrade from './DialogTrade'
 
-const Planet = ({ planetLevel, size,isActive }) => {
+const Planet = ({ planetLevel, size,isActive, level }) => {
     const refContainer = useRef()
+    const [open, setOpen] = useState(false);
     const loader = new GLTFLoader()
     const clock = new THREE.Clock();
     let mixer = null
@@ -117,11 +119,12 @@ const Planet = ({ planetLevel, size,isActive }) => {
         >
             {isActive && 
                 <Animate planetLevel={planetLevel}>
-                    <button className='bg-black absolute -bottom-2 opacity-80 p-2 w-2/5 tracking-widest shadow-2xl rounded-lg text-white'>
+                    <button onClick={() => setOpen(true)} className='bg-black absolute -bottom-2 opacity-80 p-2 w-2/5 tracking-widest shadow-2xl rounded-lg text-white'>
                         JUGAR
                     </button>
                 </Animate>
             }
+            <DialogTrade open={open} setOpen={setOpen} level={level}/>
         </div>
     )
 }

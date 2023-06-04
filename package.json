@@ -11,6 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@hxronetwork/parimutuelsdk": "^1.0.25",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.3",
     "@react-three/drei": "^9.71.0",
     "@react-three/fiber": "^8.13.0",
