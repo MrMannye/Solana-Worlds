@@ -17,10 +17,10 @@ export default function Home() {
   const { connected } = useWallet();
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (!connected) router.push("/login");
-  //   console.log(swiper?.realIndex)
-  // }, [connected, swiper])
+  useEffect(() => {
+    if (!connected) router.push("/login");
+    console.log(swiper?.realIndex)
+  }, [connected, swiper])
 
   const handleChangueSlide = (e: SwiperClass) => {
     setUserLevel(e.activeIndex)
