@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-// import { Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react'
 import Animate from '@/animations/Animate'
 import DialogTrade from './DialogTrade'
 
@@ -125,6 +125,15 @@ const PlanetLowilds = ({ planetLevel, size, isActive,level,userLevel, setUserLev
                     </button>
                 </Animate>
             }
+            {loading && (
+                <Spinner
+                    size='xl'
+                    position={'absolute'}
+                    left={'50%'}
+                    top='50%'
+                    className='w-10 h-10'
+                />
+            )}
             <DialogTrade open={open} setOpen={setOpen} level={level} userLevel={userLevel} setUserLevel={setUserLevel}/>
         </div>
     )

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-// import { Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react'
 
 
 const Planet = ({ model, size }) => {
@@ -112,9 +112,18 @@ const Planet = ({ model, size }) => {
 
     return (
         <div 
-            className='w-32 h-32 lg:flex justify-center'
+            className='w-32 h-32 relative lg:flex justify-center'
             ref={refContainer}
         >
+            {loading && (
+                <Spinner
+                    size='xl'
+                    position={'absolute'}
+                    left={'50%'}
+                    top='50%'
+                    className='w-10 h-10'
+                />
+            )}
         </div>
     )
 }

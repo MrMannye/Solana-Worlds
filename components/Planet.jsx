@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-// import { Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react'
 import Animate from '@/animations/Animate'
 import DialogTrade from './DialogTrade'
 
-const Planet = ({ planetLevel, size,isActive, level, userLevel, setUserLevel }) => {
+const Planet = ({ planetLevel, size, isActive, level, userLevel, setUserLevel }) => {
     const refContainer = useRef()
     const [open, setOpen] = useState(false);
     const loader = new GLTFLoader()
@@ -76,7 +76,7 @@ const Planet = ({ planetLevel, size,isActive, level, userLevel, setUserLevel }) 
                 obj.name = `${planetLevel}`
                 obj.position.y = 1
                 obj.position.x = 0
-                obj.scale.set(size,size,size)
+                obj.scale.set(size, size, size)
                 obj.castShadow = true;
                 obj.receiveShadow = true;
                 scene.add(obj)
@@ -113,18 +113,27 @@ const Planet = ({ planetLevel, size,isActive, level, userLevel, setUserLevel }) 
     }, [renderer, handleWindowResize])
 
     return (
-        <div 
+        <div
             className='w-full h-[410px] relative flex flex-col items-center justify-center'
             ref={refContainer}
         >
-            {isActive && 
+            {isActive &&
                 <Animate planetLevel={planetLevel}>
                     <button onClick={() => setOpen(true)} className='bg-black absolute -bottom-2 opacity-80 p-2 w-2/5 tracking-widest shadow-2xl rounded-lg text-white'>
                         JUGAR
                     </button>
                 </Animate>
             }
-            <DialogTrade open={open} setOpen={setOpen} level={level} userLevel={userLevel} setUserLevel={setUserLevel}/>
+            {loading && (
+                <Spinner
+                    size='xl'
+                    position={'absolute'}
+                    left={'50%'}
+                    top='50%'
+                    className='w-8 h-8'
+                />
+            )}
+            <DialogTrade open={open} setOpen={setOpen} level={level} userLevel={userLevel} setUserLevel={setUserLevel} />
         </div>
     )
 }
