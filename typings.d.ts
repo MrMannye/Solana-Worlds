@@ -14,3 +14,8 @@ interface PariObj {
     shortOdds: string; // This is the weighted odds of the Short Pool
     pubkey: string; // This is the contest pubkey
 }
+
+interface User{
+    name: string,
+    email: string
+}

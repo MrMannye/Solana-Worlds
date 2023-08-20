@@ -2,20 +2,20 @@ import React, { useEffect, useMemo, useState } from "react";
 import ProfileM from "../components/ProfileM";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import PersonIcon from '@mui/icons-material/Person';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
-import Animate from "@/animations/Animate";
 import { useRouter } from "next/router";
 import { PublicKey } from "@solana/web3.js";
+import { TextField } from "@mui/material";
 
 
 export default function Profile() {
-  const name = 'Miguel Aguilera';
-  const age = 25;
-  const email = 'miguel.aguilera.ipn@gmail.com';
+
+  const [user, setUser] = useState<User>({ name: "User", email: "example@gmail.com" })
 
   const { wallet, publicKey } = useWallet();
-  const {connection} = useConnection();
+  const { connection } = useConnection();
   const { connected } = useWallet();
 
   const [balance, setBalance] = useState<string | null>(null);
@@ -33,7 +33,7 @@ export default function Profile() {
 
   useEffect(() => {
     fetchBalance(publicKey!);
-  },[])
+  }, [])
 
   useEffect(() => {
     if (!connected) router.push("/login");
@@ -41,21 +41,34 @@ export default function Profile() {
 
   return (
     <div className='flex relative items-center'>
-      {/* <Animate> */}
       <div className="absolute w-1/3 h-2/3 left-40 p-4">
-        {/* <div className="absolute top-0 left-0 w-full h-full bg-slate-50 filter blur-xl opacity-20" /> */}
         <div className="flex flex-col items-center justify-center z-50">
           <div className="flex items-center justify-between space-x-2">
             <img src={wallet?.adapter.icon} alt='Image Icon Wallet' className=' w-16 h-16 p-2 rounded-full' />
             <span className="font-bold text-white">{content}</span>
           </div>
           <div className="text-white text-sm mt-5 flex items-center space-x-5 w-full">
-            <span className="text-base">Usuario: </span>
-            <span>{name} (Desarrollador)</span>
+            <span className="text-base w-12">Usuario: </span>
+            <TextField
+              label="Name"
+              type="text"
+              autoComplete="amount"
+              size='small'
+              value={user.name}
+              onChange={(e) => setUser(prevUser => ({ ...prevUser, name: e.target.value }))}
+            />
           </div>
           <div className="text-white text-sm mt-2 flex items-center space-x-5 w-full">
-            <span className="text-base">Correo: </span>
-            <span>{email}</span>
+            <span className="text-base w-12">Correo: </span>
+            <TextField
+              label="Email"
+              type="text"
+              placeholder="Name"
+              autoComplete="amount"
+              size='small'
+              value={user.email}
+              onChange={(e) => setUser(prevUser => ({ ...prevUser, email: e.target.value }))}
+            />
           </div>
           <div className="text-black text-sm mt-8 mb-10 flex items-center space-x-6 z-50">
             <div className="italic bg-white shadow-lg space-x-4 p-3 flex items-center rounded-md">
@@ -67,10 +80,21 @@ export default function Profile() {
               <span><span className="font-bold text-lg">SOL: </span> {balance} solana</span>
             </div>
           </div>
-          <WalletDisconnectButton />
+          <div className="flex items-center justify-evenly w-full">
+            <WalletDisconnectButton />
+            <button
+              className="wallet-adapter-button wallet-adapter-button-trigger"
+              type="button"
+              onClick={() => console.log("Save Data")}
+            >
+              <i className="wallet-adapter-button-start-icon">
+                <PersonIcon className="" />
+              </i>
+              Save User
+            </button>
+          </div>
         </div>
       </div>
-      {/* </Animate> */}
       <ProfileM model={"/models/profile.glb"} size={1.2} />
     </div>
   );
